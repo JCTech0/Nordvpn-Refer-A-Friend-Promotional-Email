@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"> <!-- Tell iOS not to automatically link certain text strings. -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 23 - 41 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: https://web.archive.org/web/20190717120616/http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset : BEGIN -->
+    <style>
+
+        /* What it does: Tells the email client that both light and dark styles are provided. A duplicate of meta color-scheme meta tag above. */
+        :root {
+          color-scheme: light dark;
+          supported-color-schemes: light dark;
+        }
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+        /* What it does: forces Samsung Android mail clients to use the entire viewport */
+        #MessageViewBody, #MessageWebViewDiv{
+            width: 100% !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+        a {
+            text-decoration: none;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        a[x-apple-data-detectors],  /* iOS */
+        .unstyle-auto-detected-links a,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+        .im {
+            color: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container {
+                min-width: 320px !important;
+            }
+        }
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container {
+                min-width: 375px !important;
+            }
+        }
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container {
+                min-width: 414px !important;
+            }
+        }
+
+    </style>
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style>
+
+	    /* What it does: Hover styles for buttons */
+	    .button-td,
+	    .button-a {
+	        transition: all 100ms ease-in;
+	    }
+	    .button-td-primary:hover,
+	    .button-a-primary:hover {
+	        background: #555555 !important;
+	        border-color: #555555 !important;
+	    }
+
+        .img-social-media {
+        style="display: inline-block; 
+        justify-content: center; 
+        align-items: center; 
+        height: 18px; 
+        width: 18px;
+        position: relative;
+        top: 20px;
+        }
+
+	    /* Media Queries */
+	    @media screen and (max-width: 480px) {
+
+	        /* What it does: Forces table cells into full-width rows. */
+	        .stack-column,
+	        .stack-column-center {
+	            display: block !important;
+	            width: 100% !important;
+	            max-width: 100% !important;
+	            direction: ltr !important;
+	        }
+	        /* And center justify these ones. */
+	        .stack-column-center {
+	            text-align: center !important;
+	        }
+
+	        /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+	        .center-on-narrow {
+	            text-align: center !important;
+	            display: block !important;
+	            margin-left: auto !important;
+	            margin-right: auto !important;
+	            float: none !important;
+	        }
+	        table.center-on-narrow {
+	            display: inline-block !important;
+	        }
+
+	        /* What it does: Adjust typography on small screens to improve readability */
+	        .email-container p {
+	            font-size: 17px !important;
+	        }
+	    }
+
+        /* Dark Mode Styles : BEGIN */
+        /* @media (prefers-color-scheme: dark) {
+            .email-bg {
+                background: #111111 !important;
+            }
+            .darkmode-bg {
+                background: #222222 !important;
+            }
+            h1,
+            h2,
+            h3,
+            p,
+            li,
+            .darkmode-text,
+            .email-container a:not([class]) {
+                color: #F7F7F9 !important;
+            }
+            td.button-td-primary,
+            td.button-td-primary a {
+                background: #ffffff !important;
+                border-color: #ffffff !important;
+                color: #222222 !important;
+            }
+            td.button-td-primary:hover,
+            td.button-td-primary a:hover {
+                background: #cccccc !important;
+                border-color: #cccccc !important;
+            }
+            .footer td {
+                color: #aaaaaa !important;
+            }
+            .darkmode-fullbleed-bg {
+                background-color: #0F3016 !important;
+            }
+        } */
+        /* Dark Mode Styles : END */
+    </style>
+    <!-- Progressive Enhancements : END -->
+
+</head>
+<!--
+	The email background color (#222222) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f7f7f8;" class="email-bg">
+  <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #f7f7f8;" class="email-bg">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #222222;" class="email-bg">
+    <tr>
+    <td>
+    <![endif]-->
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="max-height:0; overflow:hidden; mso-hide:all;" aria-hidden="true">
+            (Optional) This text will appear in the inbox preview, but not the email body. It can be used to supplement the email subject line or even summarize the email's contents. Extended text preheaders (~490 characters) seems like a better UX for anyone using a screenreader or voice-command apps like Siri to dictate the contents of an email. If this text is not included, email clients will automatically populate it using the text (including image alt text) at the start of the email's body.
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+        <!-- Preview Text Spacing Hack : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+	        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </div>
+        <!-- Preview Text Spacing Hack : END -->
+
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+            2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+            Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+        -->
+        <div style="max-width: 680px; margin: 0 auto;" class="email-container">
+            <!--[if mso]>
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="680">
+            <tr>
+            <td>
+            <![endif]-->
+
+	        <!-- Email Body : BEGIN -->
+	        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+		        <!-- Email Header : BEGIN -->
+	            <tr>
+	                <td style="padding: 30px 0 30px 30px; text-align: left">
+	                    <img src="https://ci3.googleusercontent.com/meips/ADKq_NZVGcwTmIn19VCPiqZGbv8anr0PDw-3Gxd5LphaCZ4o8cF_RsAImdWdRYbbYY_POJjiytXnQE1EV3_ApPBYqf20AeeCiu9JBFZoDJ72F14FcOephxBVSqAUs22emD50oN-fIpBoWS2Snx_UKk8=s0-d-e1-ft#https://s1.nordcdn.com/nordvpn/media/1.1883.0/images/emails/global/nordvpn-logo-new.png" width="150" height="50" alt="alt_text" border="0" style="height: auto; background: #f7f7f8; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
+	                </td>
+	            </tr>
+		        <!-- Email Header : END -->
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;" class="darkmode-bg">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="padding: 40px 40px 20px 50px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                                    <h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: bold;">Earn 3 free months of NordVPN</h1>
+                                    <p style="margin: 30px 0 10px 0; font-size: 18px;">Have you already invited all your friends to use NordVPN? Refer a friend, get <span style="font-weight: bold;">3 months of NordVPN</span> — it’s as easy as that.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0 20px 20px;">
+                                    <!-- Button : BEGIN -->
+                                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto;">
+                                        <tr>
+                                            <td class="button-td button-td-primary" style="border-radius: 36px;">
+											     <a class="button-a button-a-primary" href="https://google.com/" style="background: #d9d9d9; border: none; font-family: sans-serif; font-size: 18px; line-height: 15px; text-decoration: underline; padding: 16px 24px; color: #000000; display: block; border-radius: 36px; font-weight: bold;">https://ref.nordvpn.com/123abc</a>
+                                                 <p style="color: #000000; text-align: center; font-size: 13px; background-color: #ffffff; font-weight: 300;">Copy and share your invite link.</p>
+											</td>
+                                        </tr>
+                                    </table>
+                                    <!-- Button : END -->
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                <!-- 1 Column Text + Button : END -->
+
+                <!-- Background Image with Text : BEGIN -->
+                <tr>
+                    <!-- Bulletproof Background Images c/o https://backgrounds.cm -->
+                    <td style="padding: 0 40px 0 50px; text-align: center; background-color: #ffffff; background-position: center center !important; background-size: cover !important;">
+                        <!--[if gte mso 9]>
+                        <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: inline-block; width: 680px; height: 180px;" src="https://via.placeholder.com/680x180/222222/666666" />
+                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: inline-block; position: absolute; width: 680px; height: 180px;">
+                        <v:fill opacity="0%" color="#222222" />
+                        <![endif]-->
+                        <div>
+                            <!--[if mso]>
+                            <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="500">
+                            <tr>
+                            <td width="500">
+                            <![endif]-->
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:100%; margin: auto;">
+                                <tr>
+                                    <td style="text-align: left; padding: 10px 0 20px 0; font-family: sans-serif; font-size: 18px; line-height: 20px; color: #000000;">
+                                        <p style="margin: 0 0 0 0;">Alternatively, you can find the referral link in your Nord Account. Log in and click “<a href="url" style="text-decoration: underline;">Refer a friend</a>” on the menu on the left.</p>
+                                        <p style="margin: 20px 0 20px;">Keep in mind — you can only refer friends who are new to NordVPN and have never used the service before.</p>
+                                        <p style="margin: 30px 0 30px; font-weight: bold; font-size: 20px;">Refer in 3 easy steps</p>
+                                        <ul style="padding: 0; margin: 0; list-style-type: disc;">
+                                            <img src="https://ci3.googleusercontent.com/meips/ADKq_Nb7YkAz0CH-LQvoJc0fmm27AkW_seqwpT_fKLvrpmXSa9oGezmiTtGMRV95FVAK1tJ_e4ZNQsbN9ymS4F-BwivxOOlrE2iil0nWIdtRHu2if7rVxp8BMK1xJGeBsFiqUR9Oc8i5sOiopG011DWFWQ23c_i-sUA=s0-d-e1-ft#https://d2axdqolvqmdvx.cloudfront.net/a9723407-eec4-457a-88bd-e839befad443/iconinviteafriend.png" style="text-align: left; width: 40px; height: 40px;">
+                                            <li style="margin:0 0 20px 10px; display: inline-block; font-weight: bold;" class="list-item-first">Invite a friend<span style="display: block; font-weight: 400; padding: 6px 0 0 0;">Send a unique referral link to your friend.</span></li>
+                                            <div>
+                                            <img src="https://ci3.googleusercontent.com/meips/ADKq_NZ0Tif7UGlhV6yAmI6i-dj0dJlTAFjMSY_DdXsFyJoLRg8i7rZIy2ZALbazo5s8Uz0h5h2bPa9VsiT1sWIT_xf9aP5m5JUsS2MK0o-xIeIdKmoQLUXVmbK3r_B3DNdEzbDkH-4jUO3zSSlMxY63DptlpU5x60I=s0-d-e1-ft#https://d2axdqolvqmdvx.cloudfront.net/1bcaecaa-c578-4edf-9021-3814873592fd/iconwaitfor30days.png" style="text-align: left; width: 40px; height: 40px;">
+                                            <li style="margin:0 0 20px 10px; display: inline-block; font-weight: bold;">Wait for 30 days<span style="display: block; font-weight: 400; padding: 6px 0 0 0;">Your friend buys NordVPN and stays with us.</span></li>
+                                            </div>
+                                            <img src="https://ci3.googleusercontent.com/meips/ADKq_NZz4Vu9L_ZCqTSbXpQkVsaTkVnZwk8aNDTNwTtqhCViHVbOfaU2SQi1Q--KM9DShVofaMG7zXOpA69Nt_Q1cA6K5fE7R_mO9FfE-a5nxx9b2919_vTrK3IviM8nb9t8L4gaZjHI9EiHJ7GgDCSW-EOeEvU=s0-d-e1-ft#https://d2axdqolvqmdvx.cloudfront.net/e4e3bcbe-200f-4149-99c1-8e94785e8e73/icongetrewards.png" style="text-align: left; width: 40px; height: 40px;">
+                                            <li style="margin: 0 0 20px 10px; display: inline-block; font-weight: bold;" class="list-item-last">Get rewards<span style="display: block; font-weight: 400; padding: 6px 0 0 0;">You get 3 months and your friend gets up to 3 months of NordVPN!</span></li>
+                                            <li style="margin: 0 0 20px 0; display: block; padding: 10px 0 0 0;" class="list-item-last">Stay safe!<span style="display: block; padding: 4px 0 0 0;">The NordVPN team</span></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--[if mso]>
+                            </td>
+                            </tr>
+                            </table>
+                            <![endif]-->
+                        </div>
+                        <!--[if gte mso 9]>
+                        </v:fill>
+                        </v:rect>
+                        </v:image>
+                        <![endif]-->
+                    </td>
+                </tr>
+                <!-- Background Image with Text : END -->
+            
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 680px;" class="footer">
+                <tr style="text-align: center; background-color: #f7f7f8;">
+                    <td style="background-color: #f7f7f8;">
+                    <a href="" style="display: inline-block; justify-content: center; align-items: center; padding: 15px 10px 15px 0;"><img src="https://ci3.googleusercontent.com/meips/ADKq_Nbpc-fGlYRwJE8P9Uc6riHczc4GVtz0bfRSGh9m2yb_-P094rzdRbr8ncoMFcyV68SQokoDl7hLP3-6GLwu5inEc0127q4BSKrw_9HPb0Vt4HNE0q40W3695ZcODnEjvkogta1Gi7pwWHLIYlFRx3xnHxNefg=s0-d-e1-ft#https://d2axdqolvqmdvx.cloudfront.net/46b0b507-17cf-4111-8aef-79435fa98bc6/iconfacebook232x.png" class="img-social-media">
+                    <a href="" style="display: inline-block; justify-content: center; align-items: center; padding: 15px 10px 15px 0;"><img src="https://ci3.googleusercontent.com/meips/ADKq_NaPvyPeC2FXoPXEVEUXLen867NJ5PWP023vLyfQKQ9AqEroHfXeFaK8P3lUEnPHeuDncEGVa33cMXZGKlKi1Ph4iji14y0AX7KG-8BMaz08bKxyxYmrCtk5aTiFkOCehuTM4xlYelFdnwp-Hz9DQBkl6Ic=s0-d-e1-ft#https://d2axdqolvqmdvx.cloudfront.net/79390811-92e5-4131-be58-ce3f296af98c/iconxtwitter2x.png" class="img-social-media">
+                    <a href="" style="display: inline-block; justify-content: center; align-items: center; padding: 15px 10px 15px 0;"><img src="https://ci3.googleusercontent.com/meips/ADKq_Na1_VxFVCmJwjvJGXSwNJWyScKiediyXx5E1_2LVwGpgkGiz9noEFlwNilNc3VQ_6xxssIVXhJXRY_eZH5qQTcAKgrzYsoII7b5WiEDreyp3LQlA5a6WIqfzrzOOWOF=s0-d-e1-ft#https://s1.nordcdn.com/nordvpn/3.161.0/images/emails/global/instagram.png" class="img-social-media">
+                    <a href="" style="display: inline-block; justify-content: center; align-items: center; padding: 15px 0 15px 0;"><img src="https://ci3.googleusercontent.com/meips/ADKq_NZCx7kdyOW0ejxBm2QqyRMP-j8N-Z-nhOUqIKZbD7dPTfzZaTuv9UH0F-NXZNYL2HCnd1xpxyXVIwivp1JfwBtq5V7_Ue1iLtyf3ddmHEfFxR1fEDM-RdFMI9JnfQ=s0-d-e1-ft#https://s1.nordcdn.com/nordvpn/3.161.0/images/emails/global/youtube.png" class="img-social-media">
+                    </td>
+                    <tr>
+                    <td style="padding: 25px 0 60px 0; font-family: sans-serif; font-size: 12px; line-height: 15px; text-align: center; color: #ffffff;"><span class="unstyle-auto-detected-links" style="color: #b5b6b9;">PH F&F TOWER, 50th Street & 56th Street, Suite #32-D, Floor 32, Panama City, Republic of Panama</span>
+                        <br><br>
+                        <unsubscribe style="color: #b5b6b9; text-decoration: underline;">Unsubscribe</unsubscribe>
+                    </td>
+                    </tr>
+                    </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+    </center>
+</body>
+</html>
